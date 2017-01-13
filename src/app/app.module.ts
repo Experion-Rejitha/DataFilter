@@ -4,17 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { DataFilterComponent } from './data-filter.component';
+import {DataFilterService} from './data-filter.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DataFilterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [DataFilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
