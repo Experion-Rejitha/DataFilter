@@ -1,0 +1,100 @@
+
+<div class="container-fluid">
+  <div class="container-fluid row ">
+       <h1>EMPLOYEE DETAILS</h1>
+  </div>
+    <div class="container-fluid">
+        <div class="row row2">
+
+                <div class="col-md-3">
+                  <!--Show first filterField-->
+                    <select #index (change)='SelectedValue = index.value' > 
+                        <option *ngFor="let n of filterField1.details"[value]="n.id" >{{n.name}}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                <!--Show second filterField-->
+                    <div *ngIf = "SelectedValue==2">
+                        <select #index (change)='SelectedValueno = index.value' > 
+                            <option *ngFor="let n of filterEmpNo.operators" [value]="n.id" >{{n.name}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf = "SelectedValue==3">
+                        <select #index (change)='SelectedValuename = index.value'> 
+                            <option *ngFor="let n of filterEmpName.operators" [value]="n.id">{{n.name}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf = "SelectedValue==4">
+                        <select #index (change)='SelectedValuedoj = index.value'> 
+                            <option *ngFor="let n of filterDOJ.operators" [value]="n.id">{{n.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf = "true">
+                    <label>Value1</label>
+                    <input type="text" name="textField" id="textField" [(ngModel)]="value"/>
+                </div>
+                <div *ngIf = "SelectedValueno==6" class="col-md-3">
+                    <label>Value2</label>
+                    <input type="text" name="textField" [(ngModel)]="value2"/>
+                </div>
+                <div *ngIf = "SelectedValuedoj==7">
+                  <label>DateFrom</label>
+                    <input type="date" name="textField"/>
+                    <label>DateTo</label>
+                    <input type="date" name="textField"/>
+                </div>
+        </div>
+        <div class="row btnCls">
+             <button type="submit" class="btn btn-success" (click)="dataFilter()">Filter</button>
+             <button type="reset" class="btn btn-primary"  (click)="resetData()">Reset</button>
+        </div>
+        
+    </div>
+
+    <!--Display the contents of JSON array as table-->
+    <div class="container-fluid tabCls" *ngIf = "showdefaultValue">
+        <table class="table table-striped">
+            <thead>
+                  <th>EmployeeNumber</th>
+                  <th>EmployeeName</th>
+                  <th>Date of Joining</th>
+                  <th>Designation</th>
+                  <th>Band</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let j of empDetails.emp">
+                    <td>{{j.empNo}}</td>
+                    <td>{{j.empName}}</td>
+                    <td>{{j.dateofJoin}}</td>
+                    <td>{{j.designation}}</td>
+                    <td>{{j.band}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--Display the filtered contents of JSON array as table-->
+    <div class="container-fluid tabCls" *ngIf = "showfilterValue">
+        <table class="table table-striped">
+            <thead>
+                  <th>EmployeeNumber</th>
+                  <th>EmployeeName</th>
+                  <th>Date of Joining</th>
+                  <th>Designation</th>
+                  <th>Band</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let j of resultArray">
+                    <td>{{j.empNo}}</td>
+                    <td>{{j.empName}}</td>
+                    <td>{{j.dateofJoin}}</td>
+                    <td>{{j.designation}}</td>
+                    <td>{{j.band}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
